@@ -1,4 +1,4 @@
-import { Login, Signup, FourOfour, Verification } from "./Pages"
+import { Login, Signup, FourOfour, Verification, Dashboard } from "./Pages"
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import { AppLayout } from "./Layout"
@@ -25,6 +25,10 @@ function App() {
         {
           path: 'verification',
           element: <Verification email={email} />
+        },
+        {
+          path: 'dashboard',
+          element: <Dashboard />
         }
       ]
     },

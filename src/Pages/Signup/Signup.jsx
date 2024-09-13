@@ -13,7 +13,6 @@ import { setDoc, doc } from "firebase/firestore";
 // React Toasts
 import { toast, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import { useEffect } from "react";
 
 
 const Signup = () => {
@@ -28,7 +27,6 @@ const Signup = () => {
 
         try {
             const userCredentials = await createUserWithEmailAndPassword(auth, email, password);
-
 
             const currentUser = userCredentials.user;
 
