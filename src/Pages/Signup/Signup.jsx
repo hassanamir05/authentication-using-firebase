@@ -56,6 +56,7 @@ const Signup = () => {
         }
     };
 
+
     const handleGoogleSignup = async () => {
 
         try {
