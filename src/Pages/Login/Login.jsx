@@ -24,7 +24,6 @@ const Login = () => {
     const email = useSelector((state) => state.auth.email);
     const password = useSelector((state) => state.auth.password);
 
-    const [error, setError] = useState(null);
     const [showPass, setShowPass] = useState(false)
 
     const handleLogin = async (event) => {
@@ -49,7 +48,6 @@ const Login = () => {
             }
 
         } catch (error) {
-            setError('Invalid Credentials');
             toast.error('Invalid Credentials', {
                 position: 'top-right'
             });
@@ -92,7 +90,6 @@ const Login = () => {
                 .catch((error) => {
                     const errorCode = error.code;
                     const errorMessage = error.message;
-                    // ..
                 });
 
         } catch (error) {
@@ -106,7 +103,6 @@ const Login = () => {
     return (
         <>
             <form
-                onSubmit={handleLogin}
                 className="min-h-screen bg-gray-100 text-gray-900 flex justify-center font-poppins">
                 <div className="max-w-screen-xl m-0 sm:m-10 bg-white shadow sm:rounded-lg flex justify-center flex-1">
                     <div className="flex-1 bg-indigo-100 text-center hidden lg:flex">
@@ -126,7 +122,7 @@ const Login = () => {
                             </h1>
                             <div className="w-full flex-1 mt-8">
                                 <div className="flex flex-col items-center">
-                                    <GlassButton name="Login with Google" onClick={handleGoogleLogin} />
+                                    <GlassButton name="Login with Google" onClick={handleGoogleLogin} icon='google' />
                                 </div>
 
                                 <div className="my-12 border-b text-center">
@@ -152,17 +148,15 @@ const Login = () => {
 
                                         <div className="flex flex-row w-[70%] h-[20px]">
                                             <input type="checkbox" id="show-pass" className='w-[40px] h-[20px]  m-0 ' onChange={() => { setShowPass(!showPass) }} />
-                                            <label htmlFor="show-pass" className="w-[150px]">Show Password</label>
+                                            <label htmlFor="show-pass" className="w-[150px] hover:cursor-pointer">Show Password</label>
                                         </div>
 
                                         <a href="#" className="w-full text-right text-blue-400 underline" onClick={forgotPassword}>Forgot Password</a>
                                     </div>
 
-                                    {error && (
-                                        <p className="text-red-500 text-center mt-4">{error}</p>
-                                    )}
 
-                                    <Button name="Login" />
+
+                                    <Button name="Login" onCLick={handleLogin} />
 
                                     <p className="mt-6 text-center text-md">
                                         Don't have an account?
