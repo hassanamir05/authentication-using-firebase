@@ -26,31 +26,40 @@ const Login = () => {
 
     const [showPass, setShowPass] = useState(false)
 
+
+
+
     const handleLogin = async (event) => {
         event.preventDefault();
 
-        try {
-            await signInWithEmailAndPassword(auth, email, password);
-            const currentUser = auth.currentUser;
+        if (email != '' && password != '') {
+            try {
+                await signInWithEmailAndPassword(auth, email, password);
+                const currentUser = auth.currentUser;
 
-            if (currentUser.emailVerified) {
-                toast.success('Login Successful!', {
+                if (currentUser.emailVerified) {
+                    toast.success('Login Successful!', {
+                        position: 'top-right'
+                    });
+
+                    setTimeout(() => {
+                        navigate('/dashboard');
+                    }, 2000);
+
+                } else {
+                    await sendEmailVerification(currentUser);
+                    navigate('/verification');
+                }
+
+            } catch (error) {
+                toast.error('Invalid Credentials', {
                     position: 'top-right'
                 });
-
-                setTimeout(() => {
-                    navigate('/dashboard');
-                }, 2000);
-
-            } else {
-                await sendEmailVerification(currentUser);
-                navigate('/verification');
             }
-
-        } catch (error) {
-            toast.error('Invalid Credentials', {
+        } else {
+            toast.error('Input fields can not be empty!', {
                 position: 'top-right'
-            });
+            })
         }
     };
 
@@ -103,6 +112,7 @@ const Login = () => {
     return (
         <>
             <form
+                onSubmit={handleLogin}
                 className="min-h-screen bg-gray-100 text-gray-900 flex justify-center font-poppins">
                 <div className="max-w-screen-xl m-0 sm:m-10 bg-white shadow sm:rounded-lg flex justify-center flex-1">
                     <div className="flex-1 bg-indigo-100 text-center hidden lg:flex">
@@ -156,7 +166,7 @@ const Login = () => {
 
 
 
-                                    <Button name="Login" onCLick={handleLogin} />
+                                    <Button name="Login" />
 
                                     <p className="mt-6 text-center text-md">
                                         Don't have an account?
