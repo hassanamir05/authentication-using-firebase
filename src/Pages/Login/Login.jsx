@@ -61,7 +61,11 @@ const Login = () => {
         }
     };
 
-    const handleGoogleLogin = async () => {
+    const handleGoogleLogin = async (e) => {
+
+        e.preventDefault();
+
+
         try {
             const response = await signInWithPopup(auth, googleProvider);
             console.log('response: ', response.user.displayName);
@@ -135,7 +139,9 @@ const Login = () => {
                                     <div className="flex justify-between items-center text-[14px] w-full mt-3">
 
                                         <div className="flex flex-row w-[70%] h-[20px]">
+
                                             <input type="checkbox" id="show-pass" className='w-[40px] h-[20px]  m-0 ' onChange={() => { setShowPass(!showPass) }} />
+
                                             <label htmlFor="show-pass" className="w-[150px] hover:cursor-pointer">Show Password</label>
                                         </div>
 
