@@ -1,4 +1,4 @@
-import { Login, Signup, FourOfour, Verification, Dashboard } from "./Pages"
+import { Login, Signup, FourOfour, Verification, Dashboard, ResetPassword } from "./Pages"
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 
@@ -28,6 +28,10 @@ function App() {
     {
       path: '/dashboard',
       element: <Dashboard />
+    },
+    {
+      path: '/reset-password',
+      element: <ResetPassword />
     },
     {
       path: '*',

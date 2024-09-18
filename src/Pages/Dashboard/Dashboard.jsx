@@ -1,4 +1,5 @@
 import { auth } from '../../Firebase/firebase';
+import { signOut } from 'firebase/auth';
 
 //React Hooks
 import { useState, useEffect } from 'react';
@@ -12,8 +13,13 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const Dashboard = () => {
 
-    const handleSignout = () => {
-        auth.signOut()
+    const handleSignout = (e) => {
+
+        e.preventDefault();
+
+        auth.signOut();
+
+
         toast.error('Signing Out!', {
             position: 'top-right'
         });
@@ -35,14 +41,14 @@ const Dashboard = () => {
 
     return (
         <>
-            <div className='w-full h-full min-h-screen flex flex-col justify-center items-center'>
+            <form className='w-full h-full min-h-screen flex flex-col justify-center items-center'
+                onSubmit={handleSignout}>
                 <p>Welcome {currentUser || 'User'}</p>
                 <Button
                     name="Signout"
                     customClass='bg-red-500 hover:bg-red-400 max-w-[350px] w-full mx-[30px]'
-                    onClick={handleSignout}
                 />
-            </div>
+            </form>
             <ToastContainer />
         </>
     );

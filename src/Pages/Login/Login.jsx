@@ -27,8 +27,6 @@ const Login = () => {
     const [showPass, setShowPass] = useState(false)
 
 
-
-
     const handleLogin = async (event) => {
         event.preventDefault();
 
@@ -84,28 +82,8 @@ const Login = () => {
         }
     };
 
-    const forgotPassword = async () => {
-        console.log('inside reset function');
-
-        console.log('email : ', email)
-
-        try {
-            sendPasswordResetEmail(auth, email)
-                .then(() => {
-                    toast.success('Reset email sent!', {
-                        position: 'top-right'
-                    })
-                })
-                .catch((error) => {
-                    const errorCode = error.code;
-                    const errorMessage = error.message;
-                });
-
-        } catch (error) {
-            toast.error('Password reset failed!', {
-                position: 'top-right'
-            });
-        }
+    const navigateToResetPassword = () => {
+        window.location.href = '/reset-password'
     }
 
 
@@ -161,7 +139,7 @@ const Login = () => {
                                             <label htmlFor="show-pass" className="w-[150px] hover:cursor-pointer">Show Password</label>
                                         </div>
 
-                                        <a href="#" className="w-full text-right text-blue-400 underline" onClick={forgotPassword}>Forgot Password</a>
+                                        <a href="#" className="w-full text-right text-blue-400 underline" onClick={navigateToResetPassword}>Forgot Password</a>
                                     </div>
 
 
