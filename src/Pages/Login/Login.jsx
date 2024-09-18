@@ -7,7 +7,7 @@ import { setEmail, setPassword } from "../../Redux/auth/authSlice";
 
 // Firebase
 import { auth, googleProvider } from "../../Firebase/firebase";
-import { signInWithEmailAndPassword, sendEmailVerification, signInWithPopup, sendPasswordResetEmail } from "firebase/auth";
+import { signInWithEmailAndPassword, sendEmailVerification, signInWithPopup } from "firebase/auth";
 import { useState } from "react";
 
 // Toast
