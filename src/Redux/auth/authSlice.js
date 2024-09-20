@@ -13,9 +13,11 @@ const authSlice = createSlice({
     setEmail: (state, action) => {
       state.email = action.payload;
     },
+
     setUsername: (state, action) => {
       state.username = action.payload;
     },
+
     setPassword: (state, action) => {
       state.password = action.payload;
     },
